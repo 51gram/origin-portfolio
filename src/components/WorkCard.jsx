@@ -6,7 +6,9 @@ function WorkCard({ project, onOpen }) {
       style={{ '--accent': project.accent }}
       onClick={() => onOpen(project)}
     >
-      <span className="work-card-thumb" aria-hidden="true" />
+      <span className="work-card-thumb" aria-hidden="true">
+        <span className="work-card-thumb-inner" />
+      </span>
       <span className="work-card-meta">
         <span className="work-card-category">{project.category}</span>
         <span className="work-card-title">{project.title}</span>

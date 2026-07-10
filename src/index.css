@@ -102,6 +102,25 @@ button {
   justify-content: center;
   padding: 0 6vw;
   position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: -20% -10%;
+  background: radial-gradient(circle at 30% 25%, var(--accent) 0%, transparent 60%);
+  opacity: 0.18;
+  filter: blur(80px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-content {
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .hero-eyebrow {
@@ -183,7 +202,15 @@ button {
 
 .work-card-thumb {
   display: block;
+  position: relative;
   aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.work-card-thumb-inner {
+  position: absolute;
+  inset: -15% 0;
+  display: block;
   background: linear-gradient(135deg, var(--accent), transparent 70%);
   opacity: 0.85;
 }

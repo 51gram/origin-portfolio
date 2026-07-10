@@ -24,6 +24,24 @@ function Works({ onOpen }) {
         ease: 'power3.out',
         scrollTrigger: { trigger: '.work-grid', start: 'top 85%' },
       })
+
+      gsap.utils.toArray('.work-card').forEach((card) => {
+        const inner = card.querySelector('.work-card-thumb-inner')
+        gsap.fromTo(
+          inner,
+          { yPercent: -10 },
+          {
+            yPercent: 10,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true,
+            },
+          },
+        )
+      })
     }, rootRef)
 
     return () => ctx.revert()

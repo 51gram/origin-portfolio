@@ -1,10 +1,12 @@
 import { useEffect, useRef } from 'react'
-import { gsap, ScrollTrigger } from '../lib/gsap'
+import { gsap } from '../lib/gsap'
 import { projects } from '../data/projects'
+import { workLayout } from '../data/workLayout'
 import WorkCard from './WorkCard'
 
 function Works({ onOpen }) {
   const rootRef = useRef(null)
+  const cardRefs = useRef([])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -16,22 +18,17 @@ function Works({ onOpen }) {
         scrollTrigger: { trigger: rootRef.current, start: 'top 80%' },
       })
 
-      gsap.from('.work-card', {
-        opacity: 0,
-        y: 40,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: '.work-grid', start: 'top 85%' },
-      })
+      const isDesktop = window.matchMedia('(min-width: 769px)').matches
 
-      gsap.utils.toArray('.work-card').forEach((card) => {
-        const inner = card.querySelector('.work-card-thumb-inner')
-        gsap.fromTo(
-          inner,
-          { yPercent: -10 },
-          {
-            yPercent: 10,
+      cardRefs.current.forEach((card, i) => {
+        if (!card) return
+        const layout = workLayout[i % workLayout.length]
+
+        if (isDesktop) {
+          gsap.set(card, { rotate: layout.rotate, transformOrigin: '50% 50%' })
+
+          gsap.to(card, {
+            y: layout.speed,
             ease: 'none',
             scrollTrigger: {
               trigger: card,
@@ -39,8 +36,17 @@ function Works({ onOpen }) {
               end: 'bottom top',
               scrub: true,
             },
-          },
-        )
+          })
+        }
+
+        gsap.from(card, {
+          opacity: 0,
+          yPercent: 15,
+          scale: 0.92,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: card, start: 'top 92%' },
+        })
       })
     }, rootRef)
 
@@ -50,9 +56,15 @@ function Works({ onOpen }) {
   return (
     <section id="works" className="works" ref={rootRef}>
       <h2 className="section-heading">Works</h2>
-      <div className="work-grid">
-        {projects.map((project) => (
-          <WorkCard key={project.id} project={project} onOpen={onOpen} />
+      <div className="work-layers">
+        {projects.map((project, i) => (
+          <WorkCard
+            key={project.id}
+            project={project}
+            layout={workLayout[i % workLayout.length]}
+            onOpen={onOpen}
+            cardRef={(el) => (cardRefs.current[i] = el)}
+          />
         ))}
       </div>
     </section>

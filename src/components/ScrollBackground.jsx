@@ -2,9 +2,9 @@ import { useEffect, useRef } from 'react'
 import { gsap, ScrollTrigger } from '../lib/gsap'
 
 const stops = [
-  { selector: '#design-pieces', from: '#0a0a0b', to: '#9c9488' },
-  { selector: '#motion-edit', from: '#9c9488', to: '#141414' },
-  { selector: '#infographics', from: '#141414', to: '#ffffff' },
+  { selector: '#design-pieces', from: '#949085', to: '#faf7f0', start: 'top 95%', end: 'top 15%' },
+  { selector: '#motion-edit', from: '#faf7f0', to: '#141414', start: 'top 95%', end: 'top 15%' },
+  { selector: '#infographics', from: '#141414', to: '#ffffff', start: 'top 90%', end: 'top 25%' },
 ]
 
 function ScrollBackground() {
@@ -12,7 +12,7 @@ function ScrollBackground() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      stops.forEach(({ selector, from, to }) => {
+      stops.forEach(({ selector, from, to, start, end }) => {
         const target = document.querySelector(selector)
         if (!target) return
 
@@ -20,8 +20,8 @@ function ScrollBackground() {
 
         ScrollTrigger.create({
           trigger: target,
-          start: 'top 90%',
-          end: 'top 25%',
+          start,
+          end,
           onUpdate: (self) => {
             gsap.set(bgRef.current, { backgroundColor: interpolate(self.progress) })
           },

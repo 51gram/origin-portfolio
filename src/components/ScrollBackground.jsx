@@ -28,7 +28,9 @@ function ScrollBackground() {
         let color = HERO_COLOR
 
         resolved.forEach((zone, i) => {
-          const progress = triggers[i].progress
+          const trigger = triggers[i]
+          if (!trigger) return
+          const progress = trigger.progress
           if (progress > 0) {
             color = zone.interpolate(progress)
           }

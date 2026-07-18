@@ -117,9 +117,31 @@ button {
 }
 
 .design-pieces-layers {
-  min-height: 140vh;
-  border: 1px dashed rgba(26, 23, 18, 0.2);
-  border-radius: 16px;
+  position: relative;
+  min-height: 220vh;
+}
+
+.design-piece {
+  position: absolute;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.25));
+}
+
+@media (max-width: 768px) {
+  .design-pieces-layers {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .design-piece {
+    position: static;
+    width: 70% !important;
+  }
 }
 
 /* Motion & Edit */
@@ -138,9 +160,39 @@ button {
 }
 
 .motion-edit-grid {
-  min-height: 100vh;
-  border: 1px dashed rgba(245, 243, 238, 0.2);
-  border-radius: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.motion-clip {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #1a1a1a;
+}
+
+.motion-clip video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.motion-clip-play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 48px;
+  height: 48px;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .motion-edit-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
 }
 
 /* Infographics */
@@ -170,9 +222,23 @@ button {
 
 .infographics-grid {
   position: relative;
-  min-height: 80vh;
-  border: 1px dashed rgba(0, 0, 0, 0.15);
-  border-radius: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.infographic-item {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 768px) {
+  .infographics-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Footer */

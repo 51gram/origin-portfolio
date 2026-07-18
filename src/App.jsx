@@ -1,29 +1,23 @@
-import { useState } from 'react'
 import Header from './components/Header'
+import ScrollBackground from './components/ScrollBackground'
 import Hero from './components/Hero'
-import Works from './components/Works'
-import ProjectModal from './components/ProjectModal'
-import About from './components/About'
-import Contact from './components/Contact'
+import DesignPieces from './components/DesignPieces'
+import MotionEdit from './components/MotionEdit'
+import Infographics from './components/Infographics'
+import Footer from './components/Footer'
 
 function App() {
-  const [activeProject, setActiveProject] = useState(null)
-
   return (
     <>
+      <ScrollBackground />
       <Header />
       <main>
         <Hero />
-        <Works onOpen={setActiveProject} />
-        <About />
-        <Contact />
+        <DesignPieces />
+        <MotionEdit />
+        <Infographics />
       </main>
-      {activeProject && (
-        <ProjectModal
-          project={activeProject}
-          onClose={() => setActiveProject(null)}
-        />
-      )}
+      <Footer />
     </>
   )
 }

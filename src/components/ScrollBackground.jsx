@@ -1,27 +1,34 @@
 import { useEffect, useRef } from 'react'
-import { gsap } from '../lib/gsap'
+import { gsap, ScrollTrigger } from '../lib/gsap'
+
+const stops = [
+  { selector: '#design-pieces', from: '#0a0a0b', to: '#9c9488' },
+  { selector: '#motion-edit', from: '#9c9488', to: '#141414' },
+  { selector: '#infographics', from: '#141414', to: '#ffffff' },
+]
 
 function ScrollBackground() {
   const bgRef = useRef(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        defaults: { ease: 'none' },
-        scrollTrigger: {
-          trigger: '#design-pieces',
-          endTrigger: '#infographics',
-          start: 'top top',
-          end: 'bottom bottom',
-          scrub: true,
-        },
-      })
+      stops.forEach(({ selector, from, to }) => {
+        const target = document.querySelector(selector)
+        if (!target) return
 
-      tl.to(bgRef.current, { backgroundColor: '#f3eee6', duration: 0.05 }, 0)
-        .to(bgRef.current, { backgroundColor: '#9c9488', duration: 0.35 }, 0.05)
-        .to(bgRef.current, { backgroundColor: '#141414', duration: 0.1 }, 0.4)
-        .to(bgRef.current, { backgroundColor: '#ffffff', duration: 0.05 }, 0.68)
-        .to(bgRef.current, { backgroundColor: '#ffffff', duration: 0.27 }, 0.73)
+        const interpolate = gsap.utils.interpolate(from, to)
+
+        ScrollTrigger.create({
+          trigger: target,
+          start: 'top 90%',
+          end: 'top 25%',
+          onUpdate: (self) => {
+            gsap.set(bgRef.current, { backgroundColor: interpolate(self.progress) })
+          },
+          onLeave: () => gsap.set(bgRef.current, { backgroundColor: to }),
+          onLeaveBack: () => gsap.set(bgRef.current, { backgroundColor: from }),
+        })
+      })
     })
 
     return () => ctx.revert()

@@ -66,38 +66,15 @@ button {
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 24px 6vw;
-  mix-blend-mode: difference;
+  height: 100px;
+  background: rgba(77, 77, 77, 0.5);
 }
 
-.site-mark {
-  font-weight: 900;
-  font-size: 20px;
-  letter-spacing: 0.02em;
-}
-
-.site-mark .dot {
-  color: var(--accent);
-  mix-blend-mode: normal;
-}
-
-.site-nav {
-  display: flex;
-  gap: 32px;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.site-nav a {
-  opacity: 0.85;
-  transition: opacity 0.2s ease;
-}
-
-.site-nav a:hover {
-  opacity: 1;
+.site-logo {
+  position: absolute;
+  left: 25px;
+  top: 22px;
+  width: 180px;
 }
 
 /* Hero */
@@ -443,12 +420,6 @@ button {
 }
 
 @media (max-width: 640px) {
-  .site-header {
-    padding: 18px 5vw;
-  }
-  .site-nav {
-    gap: 18px;
-  }
   .design-pieces,
   .motion-edit,
   .infographics,

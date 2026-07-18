@@ -4,8 +4,8 @@ import { gsap, ScrollTrigger } from '../lib/gsap'
 const HERO_COLOR = '#000000'
 
 const zones = [
-  { selector: '#design-pieces', from: '#949085', to: '#faf7f0', start: 'top 95%', end: 'top 15%' },
-  { selector: '#motion-edit', from: '#faf7f0', to: '#141414', start: 'top 95%', end: 'top 15%' },
+  { selector: '#design-pieces', from: '#949085', to: '#faf7f0', start: 'top 80%', end: 'top 15%' },
+  { selector: '#motion-edit', from: '#faf7f0', to: '#141414', start: 'top 80%', end: 'top 15%' },
   { selector: '#infographics', from: '#141414', to: '#ffffff', start: 'top 90%', end: 'top 25%' },
 ]
 

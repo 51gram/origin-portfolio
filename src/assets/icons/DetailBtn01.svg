@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_2" data-name="レイヤー 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 25">
+  <g id="Navi">
+    <g>
+      <path d="M17,8.54c0,3.93-2.65,7.25-6.26,8.23l-1.74,7.85c-.1.52-.89.52-.99,0l-1.73-7.85C2.66,15.78,0,12.48,0,8.54,0,3.81,3.81,0,8.5,0s8.5,3.81,8.5,8.54Z" fill="#fff"/>
+      <g>
+        <rect x="4" y="7.96" width="9" height="1" fill="#bab2aa"/>
+        <rect x="8" y="3.96" width="1" height="9" fill="#bab2aa"/>
+      </g>
+    </g>
+  </g>
+</svg>

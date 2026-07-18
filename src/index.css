@@ -79,7 +79,8 @@ button {
 
 /* Hero */
 .hero {
-  margin-top: 6.9444vw;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-video-frame {

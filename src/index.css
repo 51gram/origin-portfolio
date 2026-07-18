@@ -112,16 +112,6 @@ button {
   overflow: hidden;
 }
 
-.hero-bg {
-  position: absolute;
-  inset: -20% -10%;
-  background: radial-gradient(circle at 30% 25%, var(--accent) 0%, transparent 60%);
-  opacity: 0.18;
-  filter: blur(80px);
-  z-index: 0;
-  pointer-events: none;
-}
-
 .hero-content {
   z-index: 1;
   width: 100%;

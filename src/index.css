@@ -152,6 +152,63 @@ button {
   height: auto;
 }
 
+.detail-btn {
+  position: absolute;
+  aspect-ratio: 1;
+  cursor: pointer;
+}
+
+.detail-btn-n,
+.detail-btn-f {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.2s ease;
+}
+
+.detail-btn-f {
+  opacity: 0;
+}
+
+.detail-btn:hover .detail-btn-n {
+  opacity: 0;
+}
+
+.detail-btn:hover .detail-btn-f {
+  opacity: 1;
+}
+
+.detail-pop {
+  position: absolute;
+  z-index: 20;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.detail-pop-heading {
+  margin: 0;
+  font-family: gotham, sans-serif;
+  font-weight: 700;
+  color: #3f3f3f;
+}
+
+.detail-pop-body {
+  margin: 0;
+  font-family: gotham, sans-serif;
+  font-weight: 400;
+  color: #3f3f3f;
+}
+
+@media (max-width: 768px) {
+  .detail-btn,
+  .detail-pop {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .design-pieces-layers {
     height: auto !important;

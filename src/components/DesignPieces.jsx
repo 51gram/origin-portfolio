@@ -1,6 +1,8 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gsap } from '../lib/gsap'
 import { pxToVw } from '../lib/layout'
+import detailBtnN from '../assets/icons/DetailBtn01.svg'
+import detailBtnF from '../assets/icons/DetailBtn02.svg'
 import newsTsuisekiLogo01 from '../assets/images/works/news_tsuiseki_logo01.png'
 import taiwanLogo from '../assets/images/works/taiwan_logo.png'
 import taiwanIcon01 from '../assets/images/works/taiwan_icon01.png'
@@ -73,10 +75,25 @@ const images = [
   { src: wakayamaDeKanpaiLogo01, size: 445, x: 910, y: 2195 },
 ]
 
+const details = [
+  { btnX: 140, btnY: 310, popX: 149, popY: 319, lines: ['Art Direction', 'Logo / Parts Design / Motion Design'] },
+  { btnX: 750, btnY: 240, popX: 759, popY: 249, lines: ['CM Work', 'Storyboard / Parts Design / Video Editing', 'Logo / Color Grading / Motion Design'] },
+  { btnX: 270, btnY: 565, popX: 279, popY: 574, lines: ['Art Direction', 'Logo / Parts Design / Motion Design'] },
+  { btnX: 290, btnY: 780, popX: 299, popY: 789, lines: ['CM Work', 'Storyboard / Logo / Parts Design', 'Video Editing / Motion Design'] },
+  { btnX: 810, btnY: 640, popX: 819, popY: 649, lines: ['CM Work', 'Storyboard / Logo / Parts Design', 'Video Editing / Motion Design'] },
+  { btnX: 870, btnY: 895, popX: 879, popY: 904, lines: ['Art Direction', 'Logo / Parts Design / Motion Design'] },
+  { btnX: 850, btnY: 1240, popX: 859, popY: 1249, lines: ['Art Direction', 'Logo / Parts Design', 'Infographics / Motion Design'] },
+  { btnX: 100, btnY: 1745, popX: 109, popY: 1754, lines: ['Graphic Assets', 'Logo / 3D Modeling & Animation'] },
+  { btnX: 435, btnY: 2140, popX: 444, popY: 2149, lines: ['Art Direction', 'Logo / Parts Design', 'Infographics / Motion Design'] },
+  { btnX: 855, btnY: 1820, popX: 864, popY: 1829, lines: ['PV Work', 'Storyboard / Parts Design', 'Video Editing / Motion Design'] },
+  { btnX: 950, btnY: 2170, popX: 959, popY: 2179, lines: ['Art Direction', 'Logo / Parts Design / Motion Design'] },
+]
+
 const FRAME_HEIGHT = 2560
 
 function DesignPieces() {
   const rootRef = useRef(null)
+  const [openIndex, setOpenIndex] = useState(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -142,6 +159,41 @@ function DesignPieces() {
             style={{ left: pxToVw(img.x), top: pxToVw(img.y), width: pxToVw(img.size) }}
           />
         ))}
+
+        {details.map((d, i) => (
+          <button
+            key={i}
+            type="button"
+            className="detail-btn"
+            style={{ left: pxToVw(d.btnX), top: pxToVw(d.btnY), width: pxToVw(17) }}
+            onClick={() => setOpenIndex((prev) => (prev === i ? null : i))}
+            aria-label="詳細を見る"
+          >
+            <img src={detailBtnN} className="detail-btn-n" alt="" />
+            <img src={detailBtnF} className="detail-btn-f" alt="" />
+          </button>
+        ))}
+
+        {details.map(
+          (d, i) =>
+            openIndex === i && (
+              <div
+                key={i}
+                className="detail-pop"
+                style={{ left: pxToVw(d.popX), top: pxToVw(d.popY) }}
+              >
+                {d.lines.map((line, li) => (
+                  <p
+                    key={li}
+                    className={li === 0 ? 'detail-pop-heading' : 'detail-pop-body'}
+                    style={{ fontSize: pxToVw(li === 0 ? 12 : 11) }}
+                  >
+                    {line}
+                  </p>
+                ))}
+              </div>
+            ),
+        )}
       </div>
     </section>
   )

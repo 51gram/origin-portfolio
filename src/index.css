@@ -250,52 +250,101 @@ button {
 
 /* Motion & Edit */
 .motion-edit {
-  min-height: 160vh;
-  padding: 160px 6vw;
   color: #f5f3ee;
 }
 
-.motion-edit .section-sub {
-  max-width: 480px;
-  color: rgba(245, 243, 238, 0.6);
-  font-size: 15px;
-  line-height: 1.7;
-  margin: 0 0 60px;
-}
-
 .motion-edit-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  position: relative;
+  width: 100%;
 }
 
-.motion-clip {
-  position: relative;
-  aspect-ratio: 4 / 3;
+.motion-edit-heading {
+  position: absolute;
+  margin: 0;
+  font-weight: 700;
+  font-family: gotham, sans-serif;
+  color: #fff;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.motion-edit-sub {
+  position: absolute;
+  margin: 0;
+  font-weight: 400;
+  font-family: gotham, sans-serif;
+  color: #fff;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.motion-edit-line {
+  position: absolute;
+  display: block;
+  background: #fff;
+}
+
+.motion-thumb {
+  position: absolute;
+  display: block;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 22px;
   background: #1a1a1a;
 }
 
-.motion-clip video {
+.motion-thumb-169 {
+  aspect-ratio: 16 / 9;
+}
+
+.motion-thumb-916 {
+  aspect-ratio: 9 / 16;
+}
+
+.motion-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-.motion-clip-play {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 48px;
-  height: 48px;
-  pointer-events: none;
+.motion-thumb:hover img {
+  transform: scale(1.1);
 }
 
 @media (max-width: 768px) {
   .motion-edit-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    height: auto !important;
+    padding: 100px 6vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .motion-edit-heading,
+  .motion-edit-sub,
+  .motion-edit-line {
+    position: static;
+    font-size: revert !important;
+    white-space: normal;
+  }
+
+  .motion-edit-heading {
+    font-size: clamp(32px, 8vw, 56px) !important;
+  }
+
+  .motion-edit-sub {
+    font-size: 15px !important;
+  }
+
+  .motion-edit-line {
+    width: 100% !important;
+    height: 3px !important;
+  }
+
+  .motion-thumb {
+    position: static;
+    width: 100% !important;
   }
 }
 

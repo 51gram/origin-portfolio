@@ -1,55 +1,68 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from '../lib/gsap'
-import playIcon from '../assets/icons/ThumbPlayBtn.png'
-import motionedit01Mp4 from '../assets/movie/works/motionedit01.mp4'
-import motionedit01Webm from '../assets/movie/works/motionedit01.webm'
-import motionedit02Mp4 from '../assets/movie/works/motionedit02.mp4'
-import motionedit02Webm from '../assets/movie/works/motionedit02.webm'
-import motionedit03Mp4 from '../assets/movie/works/motionedit03.mp4'
-import motionedit03Webm from '../assets/movie/works/motionedit03.webm'
-import motionedit04Mp4 from '../assets/movie/works/motionedit04.mp4'
-import motionedit04Webm from '../assets/movie/works/motionedit04.webm'
-import motionedit05Mp4 from '../assets/movie/works/motionedit05.mp4'
-import motionedit05Webm from '../assets/movie/works/motionedit05.webm'
-import motionedit06Mp4 from '../assets/movie/works/motionedit06.mp4'
-import motionedit06Webm from '../assets/movie/works/motionedit06.webm'
-import motionedit07Mp4 from '../assets/movie/works/motionedit07.mp4'
-import motionedit07Webm from '../assets/movie/works/motionedit07.webm'
-import motionedit08Mp4 from '../assets/movie/works/motionedit08.mp4'
-import motionedit08Webm from '../assets/movie/works/motionedit08.webm'
-import motionedit09Mp4 from '../assets/movie/works/motionedit09.mp4'
-import motionedit09Webm from '../assets/movie/works/motionedit09.webm'
+import { pxToVw } from '../lib/layout'
+import annaGifuTitle from '../assets/images/works/anna_gifu_title.png'
+import taiwanTitle from '../assets/images/works/taiwan_title.png'
+import newsrunnerTitle from '../assets/images/works/newsrunner_title.png'
+import umimachiCut01 from '../assets/images/works/umimachi_cut01.png'
+import hongkongTitle from '../assets/images/works/hongkong_title.png'
+import kaoCut02 from '../assets/images/works/kao_cut02.png'
+import savagameCut01 from '../assets/images/works/savagame_cut01.png'
+import kounoikeTitle from '../assets/images/works/kounoike_title.png'
+import newsWagamichiTitle from '../assets/images/works/news_wagamichi_title.png'
+import vpdsLogoanime from '../assets/images/works/Vpds_logoanime.png'
+import oeCut01 from '../assets/images/works/oe_cut01.png'
+import knotLogoanime from '../assets/images/works/knot_logoanime.png'
+import annaHoshinoTomamuCut01 from '../assets/images/works/anna_hoshino_tomamu_cut01.png'
+import annaJtbYamaguchiCut01 from '../assets/images/works/anna_jtb_yamaguchi_cut01.png'
+import annaJtbToyamaishikawaCut01 from '../assets/images/works/anna_jtb_toyamaishikawa_cut01.png'
+import annaJtbKinosakiCut01 from '../assets/images/works/anna_jtb_kinosaki_cut01.png'
+import annaHoshinoKohamaCut01 from '../assets/images/works/anna_hoshino_kohama_cut01.png'
 
-const clips = [
-  { mp4: motionedit01Mp4, webm: motionedit01Webm },
-  { mp4: motionedit02Mp4, webm: motionedit02Webm },
-  { mp4: motionedit03Mp4, webm: motionedit03Webm },
-  { mp4: motionedit04Mp4, webm: motionedit04Webm },
-  { mp4: motionedit05Mp4, webm: motionedit05Webm },
-  { mp4: motionedit06Mp4, webm: motionedit06Webm },
-  { mp4: motionedit07Mp4, webm: motionedit07Webm },
-  { mp4: motionedit08Mp4, webm: motionedit08Webm },
-  { mp4: motionedit09Mp4, webm: motionedit09Webm },
+const thumbs169 = [
+  { src: annaGifuTitle, x: 80, y: 370 },
+  { src: taiwanTitle, x: 518, y: 370 },
+  { src: newsrunnerTitle, x: 955, y: 370 },
+  { src: umimachiCut01, x: 80, y: 630 },
+  { src: hongkongTitle, x: 518, y: 630 },
+  { src: kaoCut02, x: 955, y: 630 },
+  { src: savagameCut01, x: 80, y: 890 },
+  { src: kounoikeTitle, x: 518, y: 890 },
+  { src: newsWagamichiTitle, x: 955, y: 890 },
+  { src: vpdsLogoanime, x: 80, y: 1150 },
+  { src: oeCut01, x: 518, y: 1150 },
+  { src: knotLogoanime, x: 955, y: 1150 },
 ]
+
+const thumbs916 = [
+  { src: annaHoshinoTomamuCut01, x: 80, y: 1442 },
+  { src: annaJtbYamaguchiCut01, x: 341, y: 1442 },
+  { src: annaJtbToyamaishikawaCut01, x: 601, y: 1442 },
+  { src: annaJtbKinosakiCut01, x: 862, y: 1442 },
+  { src: annaHoshinoKohamaCut01, x: 1123, y: 1442 },
+]
+
+const FRAME_HEIGHT = 1900
 
 function MotionEdit() {
   const rootRef = useRef(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.section-heading', {
+      gsap.from('.motion-edit-heading, .motion-edit-sub, .motion-edit-line', {
         opacity: 0,
-        y: 30,
+        y: 20,
         duration: 0.7,
+        stagger: 0.08,
         ease: 'power3.out',
         scrollTrigger: { trigger: rootRef.current, start: 'top 80%' },
       })
 
-      gsap.from('.motion-clip', {
+      gsap.from('.motion-thumb', {
         opacity: 0,
-        y: 40,
-        duration: 0.7,
-        stagger: 0.08,
+        y: 30,
+        duration: 0.8,
+        stagger: 0.04,
         ease: 'power3.out',
         scrollTrigger: { trigger: '.motion-edit-grid', start: 'top 85%' },
       })
@@ -60,19 +73,44 @@ function MotionEdit() {
 
   return (
     <section id="motion-edit" className="motion-edit" ref={rootRef}>
-      <h2 className="section-heading">Motion & Edit</h2>
-      <p className="section-sub">
-        リズムとタイミング、視覚的な流れで組み立てたモーショングラフィックスと映像編集。
-      </p>
-      <div className="motion-edit-grid">
-        {clips.map((clip, i) => (
-          <div className="motion-clip" key={i}>
-            <video muted loop autoPlay playsInline preload="metadata">
-              <source src={clip.mp4} type="video/mp4" />
-              <source src={clip.webm} type="video/webm" />
-            </video>
-            <img className="motion-clip-play" src={playIcon} alt="" aria-hidden="true" />
-          </div>
+      <div className="motion-edit-grid" style={{ height: pxToVw(FRAME_HEIGHT) }}>
+        <h2
+          className="motion-edit-heading"
+          style={{ left: pxToVw(710), top: pxToVw(140), fontSize: pxToVw(96) }}
+        >
+          Motion & Edit
+        </h2>
+        <p
+          className="motion-edit-sub"
+          style={{ left: pxToVw(710), top: pxToVw(250), fontSize: pxToVw(19) }}
+        >
+          Motion graphics and video editing
+          <br />
+          shaped through rhythm, timing, and visual flow.
+        </p>
+        <span
+          className="motion-edit-line"
+          style={{ left: pxToVw(704), top: pxToVw(230), width: pxToVw(614), height: pxToVw(5) }}
+        />
+
+        {thumbs169.map((t, i) => (
+          <span
+            key={`169-${i}`}
+            className="motion-thumb motion-thumb-169"
+            style={{ left: pxToVw(t.x), top: pxToVw(t.y), width: pxToVw(405) }}
+          >
+            <img src={t.src} alt="" />
+          </span>
+        ))}
+
+        {thumbs916.map((t, i) => (
+          <span
+            key={`916-${i}`}
+            className="motion-thumb motion-thumb-916"
+            style={{ left: pxToVw(t.x), top: pxToVw(t.y), width: pxToVw(237) }}
+          >
+            <img src={t.src} alt="" />
+          </span>
         ))}
       </div>
     </section>

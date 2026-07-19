@@ -6,6 +6,7 @@ import MotionEdit from './components/MotionEdit'
 import Infographics from './components/Infographics'
 import Footer from './components/Footer'
 import LeftNav from './components/LeftNav'
+import PageOverlays from './components/PageOverlays'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <ScrollBackground />
       <Header />
       <LeftNav />
+      <PageOverlays />
       <main>
         <Hero />
         <DesignPieces />

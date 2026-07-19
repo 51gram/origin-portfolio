@@ -700,6 +700,28 @@ button {
   }
 }
 
+/* Page Overlays */
+.page-overlays {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.overlay-scroll-down,
+.overlay-bg-arrow,
+.overlay-logo-mark {
+  position: absolute;
+  display: block;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .page-overlays {
+    display: none;
+  }
+}
+
 /* Modal */
 .modal-backdrop {
   position: fixed;

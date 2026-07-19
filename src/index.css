@@ -311,6 +311,90 @@ button {
   transform: scale(1.1);
 }
 
+.motion-thumb-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.motion-play-btn {
+  position: absolute;
+  z-index: 5;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.motion-play-btn img {
+  display: block;
+  width: 48px;
+  height: auto;
+}
+
+.motion-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.motion-modal {
+  position: relative;
+  border-radius: 10px;
+  overflow: visible;
+}
+
+.motion-modal-video {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  background: #000;
+}
+
+.motion-modal-btn {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.motion-modal-btn img {
+  position: absolute;
+  inset: 0;
+  width: 32px;
+  height: 32px;
+  transition: opacity 0.2s ease;
+}
+
+.motion-modal-btn .f {
+  opacity: 0;
+}
+
+.motion-modal-btn:hover .n {
+  opacity: 0;
+}
+
+.motion-modal-btn:hover .f {
+  opacity: 1;
+}
+
+.motion-modal-replay {
+  transition: opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .motion-modal-overlay,
+  .motion-play-btn {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .motion-edit-grid {
     height: auto !important;

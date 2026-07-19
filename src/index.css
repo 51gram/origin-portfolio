@@ -434,47 +434,99 @@ button {
 
 /* Infographics */
 .infographics {
-  position: relative;
-  min-height: 140vh;
-  padding: 160px 6vw;
   color: #1a1a1a;
-}
-
-.infographics-dots {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px);
-  background-size: 18px 18px;
-  pointer-events: none;
-}
-
-.infographics .section-sub {
-  position: relative;
-  max-width: 480px;
-  color: rgba(26, 26, 26, 0.6);
-  font-size: 15px;
-  line-height: 1.7;
-  margin: 0 0 60px;
 }
 
 .infographics-grid {
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  width: 100%;
+}
+
+.infographics-bg-pattern {
+  position: absolute;
+  background-repeat: repeat;
+  pointer-events: none;
+}
+
+.infographics-heading {
+  position: absolute;
+  margin: 0;
+  font-weight: 700;
+  font-family: gotham, sans-serif;
+  color: #000;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.infographics-sub {
+  position: absolute;
+  margin: 0;
+  font-weight: 400;
+  font-family: gotham, sans-serif;
+  color: #000;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.infographics-line {
+  position: absolute;
+  display: block;
+  background: #000;
 }
 
 .infographic-item {
+  position: absolute;
   display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 7px;
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.12);
+}
+
+.infographic-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 @media (max-width: 768px) {
   .infographics-grid {
-    grid-template-columns: 1fr;
+    height: auto !important;
+    padding: 100px 6vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .infographics-bg-pattern {
+    display: none;
+  }
+
+  .infographics-heading,
+  .infographics-sub,
+  .infographics-line {
+    position: static;
+    font-size: revert !important;
+    white-space: normal;
+  }
+
+  .infographics-heading {
+    font-size: clamp(32px, 8vw, 56px) !important;
+  }
+
+  .infographics-sub {
+    font-size: 15px !important;
+  }
+
+  .infographics-line {
+    width: 100% !important;
+    height: 3px !important;
+  }
+
+  .infographic-item {
+    position: static;
+    width: 100% !important;
   }
 }
 

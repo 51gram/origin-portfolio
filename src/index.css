@@ -533,50 +533,108 @@ button {
 /* Footer */
 .site-footer {
   position: relative;
-  background: #101012;
-  color: #f5f3ee;
-  padding: 60px 6vw 32px;
+  background: #fff;
+  padding: 5.5556vw 4.1667vw 4.1667vw;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 40px;
+  justify-content: center;
 }
 
-.footer-logo {
-  font-weight: 900;
-  font-size: 20px;
-}
-
-.footer-logo .dot {
-  color: var(--accent);
-}
-
-.footer-skills {
-  margin-top: 16px;
+.footer-frame {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-size: 13px;
-  color: rgba(245, 243, 238, 0.6);
 }
 
-.footer-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 14px;
+.footer-col {
+  position: relative;
+  height: 100%;
 }
 
-.footer-contact {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 14px;
-  align-items: flex-start;
+.footer-col-left {
+  width: 27.2727%;
+  background: #000000;
+  border-radius: 30px 0 0 30px;
 }
 
-.footer-contact-link {
-  font-weight: 700;
+.footer-col-right {
+  width: 72.7273%;
+  background: #4d4d4d;
+  border-radius: 0 30px 30px 0;
+}
+
+.footer-logo-img,
+.footer-works-img,
+.footer-contact-img {
+  position: absolute;
+  display: block;
+  width: auto;
+  height: auto;
+}
+
+.footer-nav-btn {
+  position: absolute;
+  display: block;
+  line-height: 0;
+}
+
+.footer-nav-btn img {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.footer-nav-btn .f {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.footer-nav-btn:hover .n {
+  opacity: 0;
+}
+
+.footer-nav-btn:hover .f {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 60px 6vw;
+  }
+
+  .footer-frame {
+    flex-direction: column;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .footer-col {
+    width: 100% !important;
+    height: auto !important;
+    padding: 32px 8vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .footer-col-left {
+    border-radius: 30px 30px 0 0;
+  }
+
+  .footer-col-right {
+    border-radius: 0 0 30px 30px;
+  }
+
+  .footer-logo-img,
+  .footer-works-img,
+  .footer-nav-btn,
+  .footer-contact-img {
+    position: static !important;
+    width: auto !important;
+    max-width: 200px;
+  }
 }
 
 /* Modal */
@@ -652,8 +710,7 @@ button {
 @media (max-width: 640px) {
   .design-pieces,
   .motion-edit,
-  .infographics,
-  .site-footer {
+  .infographics {
     padding-left: 5vw;
     padding-right: 5vw;
   }

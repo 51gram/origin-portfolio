@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from '../lib/gsap'
-import playIcon from '../assets/icons/ThumbPlayBtn.svg'
+import playIcon from '../assets/icons/ThumbPlayBtn.png'
 import motionedit01Mp4 from '../assets/movie/works/motionedit01.mp4'
 import motionedit01Webm from '../assets/movie/works/motionedit01.webm'
 import motionedit02Mp4 from '../assets/movie/works/motionedit02.mp4'

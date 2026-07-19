@@ -103,22 +103,46 @@ button {
 
 /* Design Pieces */
 .design-pieces {
-  min-height: 220vh;
-  padding: 160px 6vw;
   color: #1a1712;
-}
-
-.design-pieces .section-sub {
-  max-width: 480px;
-  color: rgba(26, 23, 18, 0.6);
-  font-size: 15px;
-  line-height: 1.7;
-  margin: 0 0 60px;
 }
 
 .design-pieces-layers {
   position: relative;
-  min-height: 220vh;
+  width: 100%;
+}
+
+.design-pieces-heading {
+  position: absolute;
+  margin: 0;
+  font-weight: 700;
+  font-family: gotham, sans-serif;
+  color: #000;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.design-pieces-sub {
+  position: absolute;
+  margin: 0;
+  font-weight: 400;
+  font-family: gotham, sans-serif;
+  color: #000;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.design-pieces-line {
+  position: absolute;
+  display: block;
+  background: #000;
+}
+
+.view-detail {
+  position: absolute;
+  font-weight: 300;
+  font-family: gotham, sans-serif;
+  color: #918371;
+  white-space: nowrap;
 }
 
 .design-piece {
@@ -126,16 +150,39 @@ button {
   display: block;
   max-width: 100%;
   height: auto;
-  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.25));
 }
 
 @media (max-width: 768px) {
   .design-pieces-layers {
-    min-height: auto;
+    height: auto !important;
+    padding: 100px 6vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 24px;
+  }
+
+  .design-pieces-heading,
+  .design-pieces-sub,
+  .design-pieces-line,
+  .view-detail {
+    position: static;
+    font-size: revert !important;
+    white-space: normal;
+    align-self: flex-start;
+  }
+
+  .design-pieces-heading {
+    font-size: clamp(32px, 8vw, 56px) !important;
+  }
+
+  .design-pieces-sub {
+    font-size: 15px !important;
+  }
+
+  .design-pieces-line {
+    width: 100% !important;
+    height: 3px !important;
   }
 
   .design-piece {

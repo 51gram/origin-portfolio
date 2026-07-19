@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { gsap } from '../lib/gsap'
+import { gsap, whenLayoutReady } from '../lib/gsap'
 import { pxToVw } from '../lib/layout'
 import detailBtnN from '../assets/icons/DetailBtn01.svg'
 import detailBtnF from '../assets/icons/DetailBtn02.svg'
@@ -96,27 +96,33 @@ function DesignPieces() {
   const [openIndex, setOpenIndex] = useState(null)
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from('.design-pieces-heading, .design-pieces-sub, .design-pieces-line, .view-detail', {
-        opacity: 0,
-        y: 20,
-        duration: 0.7,
-        stagger: 0.08,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: rootRef.current, start: 'top 80%' },
-      })
+    let ctx
+    const cancel = whenLayoutReady(() => {
+      ctx = gsap.context(() => {
+        gsap.from('.design-pieces-heading, .design-pieces-sub, .design-pieces-line, .view-detail', {
+          opacity: 0,
+          y: 20,
+          duration: 0.7,
+          stagger: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: rootRef.current, start: 'top 80%', toggleActions: 'play none none reverse' },
+        })
 
-      gsap.from('.design-piece', {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        stagger: 0.04,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: '.design-pieces-layers', start: 'top 85%' },
-      })
-    }, rootRef)
+        gsap.from('.design-piece', {
+          opacity: 0,
+          y: 30,
+          duration: 0.8,
+          stagger: 0.04,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: '.design-pieces-layers', start: 'top 85%', toggleActions: 'play none none reverse' },
+        })
+      }, rootRef)
+    })
 
-    return () => ctx.revert()
+    return () => {
+      cancel()
+      ctx && ctx.revert()
+    }
   }, [])
 
   return (

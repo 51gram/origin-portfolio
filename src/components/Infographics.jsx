@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { gsap } from '../lib/gsap'
+import { gsap, whenLayoutReady } from '../lib/gsap'
 import { pxToVw } from '../lib/layout'
 import infoBgPattern from '../assets/icons/InfoBgPattern.svg'
 import umimachiInfo01 from '../assets/images/works/umimachi_info01.png'
@@ -44,27 +44,33 @@ function Infographics() {
   const rootRef = useRef(null)
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from('.infographics-heading, .infographics-sub, .infographics-line', {
-        opacity: 0,
-        y: 20,
-        duration: 0.7,
-        stagger: 0.08,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: rootRef.current, start: 'top 80%' },
-      })
+    let ctx
+    const cancel = whenLayoutReady(() => {
+      ctx = gsap.context(() => {
+        gsap.from('.infographics-heading, .infographics-sub, .infographics-line', {
+          opacity: 0,
+          y: 20,
+          duration: 0.7,
+          stagger: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: rootRef.current, start: 'top 80%', toggleActions: 'play none none reverse' },
+        })
 
-      gsap.from('.infographic-item', {
-        opacity: 0,
-        y: 40,
-        duration: 0.7,
-        stagger: 0.06,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: '.infographics-grid', start: 'top 85%' },
-      })
-    }, rootRef)
+        gsap.from('.infographic-item', {
+          opacity: 0,
+          y: 40,
+          duration: 0.7,
+          stagger: 0.06,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: '.infographics-grid', start: 'top 85%', toggleActions: 'play none none reverse' },
+        })
+      }, rootRef)
+    })
 
-    return () => ctx.revert()
+    return () => {
+      cancel()
+      ctx && ctx.revert()
+    }
   }, [])
 
   return (

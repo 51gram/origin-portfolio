@@ -5,12 +5,14 @@ import DesignPieces from './components/DesignPieces'
 import MotionEdit from './components/MotionEdit'
 import Infographics from './components/Infographics'
 import Footer from './components/Footer'
+import LeftNav from './components/LeftNav'
 
 function App() {
   return (
     <>
       <ScrollBackground />
       <Header />
+      <LeftNav />
       <main>
         <Hero />
         <DesignPieces />

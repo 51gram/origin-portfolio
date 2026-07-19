@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { gsap } from '../lib/gsap'
+import { gsap, whenLayoutReady } from '../lib/gsap'
 import { pxToVw } from '../lib/layout'
 import playIcon from '../assets/icons/ThumbPlayBtn.png'
 import btnCloseN from '../assets/icons/BtnClosen.svg'
@@ -130,27 +130,33 @@ function MotionEdit() {
   const [videoEnded, setVideoEnded] = useState(false)
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from('.motion-edit-heading, .motion-edit-sub, .motion-edit-line', {
-        opacity: 0,
-        y: 20,
-        duration: 0.7,
-        stagger: 0.08,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: rootRef.current, start: 'top 80%' },
-      })
+    let ctx
+    const cancel = whenLayoutReady(() => {
+      ctx = gsap.context(() => {
+        gsap.from('.motion-edit-heading, .motion-edit-sub, .motion-edit-line', {
+          opacity: 0,
+          y: 20,
+          duration: 0.7,
+          stagger: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: rootRef.current, start: 'top 80%', toggleActions: 'play none none reverse' },
+        })
 
-      gsap.from('.motion-thumb', {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        stagger: 0.04,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: '.motion-edit-grid', start: 'top 85%' },
-      })
-    }, rootRef)
+        gsap.from('.motion-thumb', {
+          opacity: 0,
+          y: 30,
+          duration: 0.8,
+          stagger: 0.04,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: '.motion-edit-grid', start: 'top 85%', toggleActions: 'play none none reverse' },
+        })
+      }, rootRef)
+    })
 
-    return () => ctx.revert()
+    return () => {
+      cancel()
+      ctx && ctx.revert()
+    }
   }, [])
 
   function openVideo(key) {

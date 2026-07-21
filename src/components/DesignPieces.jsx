@@ -147,7 +147,7 @@ function DesignPieces() {
         </p>
         <span
           className="design-pieces-line"
-          style={{ left: pxToVw(77), top: pxToVw(200), width: pxToVw(670), height: pxToVw(5) }}
+          style={{ left: pxToVw(77), top: pxToVw(200), width: pxToVw(677), height: pxToVw(5) }}
         />
         <span
           className="view-detail"

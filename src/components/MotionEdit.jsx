@@ -197,7 +197,7 @@ function MotionEdit() {
         </p>
         <span
           className="motion-edit-line"
-          style={{ left: pxToVw(704), top: pxToVw(230), width: pxToVw(614), height: pxToVw(5) }}
+          style={{ left: pxToVw(704), top: pxToVw(230), width: pxToVw(661), height: pxToVw(5) }}
         />
 
         {thumbs169.map((t, i) => (

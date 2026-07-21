@@ -104,7 +104,7 @@ function Infographics() {
         </p>
         <span
           className="infographics-line"
-          style={{ left: pxToVw(87), top: pxToVw(171), width: pxToVw(556), height: pxToVw(5) }}
+          style={{ left: pxToVw(87), top: pxToVw(171), width: pxToVw(607), height: pxToVw(5) }}
         />
 
         {thumbnails.map((t, i) => (

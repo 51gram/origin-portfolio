@@ -6,9 +6,9 @@ import logoMarkIcon from '../assets/icons/LogoMarkIcon01.svg'
 const scrollDownIcon = { src: scrollDown, x: 725, y: 880, width: 89 }
 
 const bgArrows = [
-  { x: 760, y: 860 },
+  { x: 760, y: 830 },
   { x: 715, y: 3450 },
-  { x: 715, y: 5500 },
+  { x: 715, y: 5525 },
 ]
 
 const logoMarks = [

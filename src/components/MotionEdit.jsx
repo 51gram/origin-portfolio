@@ -206,11 +206,8 @@ function MotionEdit() {
             className="motion-thumb motion-thumb-169"
             style={{ left: pxToVw(t.x), top: pxToVw(t.y), width: pxToVw(405) }}
           >
-            {t.video ? (
-              <InlineThumbVideo videoKey={t.video} aspect="motion-thumb-video-169" />
-            ) : (
-              <img src={t.src} alt="" />
-            )}
+            <img src={t.src} alt="" className={t.video ? 'motion-thumb-static-img' : undefined} />
+            {t.video && <InlineThumbVideo videoKey={t.video} aspect="motion-thumb-video-169 motion-thumb-mobile-only" />}
           </span>
         ))}
 
@@ -220,11 +217,8 @@ function MotionEdit() {
             className="motion-thumb motion-thumb-916"
             style={{ left: pxToVw(t.x), top: pxToVw(t.y), width: pxToVw(237) }}
           >
-            {t.video ? (
-              <InlineThumbVideo videoKey={t.video} aspect="motion-thumb-video-916" />
-            ) : (
-              <img src={t.src} alt="" />
-            )}
+            <img src={t.src} alt="" className={t.video ? 'motion-thumb-static-img' : undefined} />
+            {t.video && <InlineThumbVideo videoKey={t.video} aspect="motion-thumb-video-916 motion-thumb-mobile-only" />}
           </span>
         ))}
 
@@ -233,7 +227,7 @@ function MotionEdit() {
             key={i}
             type="button"
             className="motion-play-btn"
-            style={{ left: pxToVw(btn.x), top: pxToVw(btn.y) }}
+            style={{ left: pxToVw(btn.x), top: pxToVw(btn.y), width: pxToVw(185), height: pxToVw(185) }}
             onClick={() => openVideo(btn.video)}
             aria-label="動画を再生"
           >
@@ -263,7 +257,7 @@ function MotionEdit() {
             <button
               type="button"
               className="motion-modal-btn motion-modal-close"
-              style={{ left: pxToVw(510), top: pxToVw(475) }}
+              style={{ left: pxToVw(510), top: pxToVw(475), width: pxToVw(178.3), height: pxToVw(53.69) }}
               onClick={closeVideo}
               aria-label="閉じる"
             >
@@ -274,7 +268,7 @@ function MotionEdit() {
             <button
               type="button"
               className="motion-modal-btn motion-modal-replay"
-              style={{ left: pxToVw(115), top: pxToVw(475), opacity: videoEnded ? 1 : 0 }}
+              style={{ left: pxToVw(115), top: pxToVw(475), width: pxToVw(198.3), height: pxToVw(53.64), opacity: videoEnded ? 1 : 0 }}
               onClick={handleReplay}
               aria-label="もう一度再生"
             >

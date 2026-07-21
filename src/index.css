@@ -317,6 +317,14 @@ button {
   object-fit: cover;
 }
 
+.motion-thumb-static-img {
+  display: block;
+}
+
+.motion-thumb-mobile-only {
+  display: none;
+}
+
 .motion-play-btn {
   position: absolute;
   z-index: 5;
@@ -327,8 +335,8 @@ button {
 
 .motion-play-btn img {
   display: block;
-  width: 48px;
-  height: auto;
+  width: 100%;
+  height: 100%;
 }
 
 .motion-modal-overlay {
@@ -357,8 +365,6 @@ button {
 
 .motion-modal-btn {
   position: absolute;
-  width: 32px;
-  height: 32px;
   padding: 0;
   cursor: pointer;
   line-height: 0;
@@ -367,8 +373,8 @@ button {
 .motion-modal-btn img {
   position: absolute;
   inset: 0;
-  width: 32px;
-  height: 32px;
+  width: 100%;
+  height: 100%;
   transition: opacity 0.2s ease;
 }
 
@@ -429,6 +435,14 @@ button {
   .motion-thumb {
     position: static;
     width: 100% !important;
+  }
+
+  .motion-thumb-static-img {
+    display: none;
+  }
+
+  .motion-thumb-mobile-only {
+    display: block;
   }
 }
 

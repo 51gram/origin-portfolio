@@ -41,11 +41,16 @@ import wakayamaDeKanpaiLogo01 from '../assets/images/works/WakayamaDeKanpai_logo
 const images = [
   { src: newsTsuisekiLogo01, size: 455, x: 158, y: 343 },
   { src: taiwanLogo, size: 414, x: 760, y: 235 },
+  {
+    group: [
+      { src: taiwanIcon01, size: 124, x: 1245, y: 420 },
+      { src: taiwanIcon02, size: 124, x: 1215, y: 280 },
+    ],
+  },
   { src: newsWagamichiLogo, size: 452, x: 290, y: 590 },
   { src: annaDaisenLogo, size: 500, x: 835, y: 640 },
   { src: annaGifuLogo, size: 640, x: 60, y: 705 },
   { src: newsRunspoLogo01, size: 600, x: 760, y: 920 },
-  { src: kiyoLogo, size: 170, x: 75, y: 1620 },
   { src: newsRunspoTelop01, size: 220, x: 50, y: 1125 },
   { src: newsrunnerTelop04, size: 220, x: 50, y: 1255 },
   { src: newsWagamichiTelop02, size: 220, x: 50, y: 1370 },
@@ -53,8 +58,6 @@ const images = [
   { src: newsrunnerTelop09, size: 281, x: 300, y: 1155 },
   { src: newsrunnerTelop07, size: 246, x: 300, y: 1265 },
   { src: newsWagamichiTelop04, size: 267, x: 300, y: 1350 },
-  { src: newsrunnerTelop12, size: 103, x: 600, y: 1060 },
-  { src: newsrunnerTelop13, size: 90, x: 730, y: 1070 },
   { src: newsrunnerTelop10, size: 520, x: 855, y: 1140 },
   { src: newsrunnerTelop01, size: 520, x: 855, y: 1280 },
   { src: newsrunnerTelop08, size: 520, x: 855, y: 1400 },
@@ -63,19 +66,29 @@ const images = [
   { src: newsRunspoTelop02, size: 520, x: 290, y: 1480 },
   { src: newsWagamichiTelop01, size: 520, x: 290, y: 1580 },
   { src: hanaippaiTanabeTelop01, size: 520, x: 290, y: 1660 },
+  {
+    group: [
+      { src: kiyoLogo, size: 170, x: 75, y: 1620 },
+      { src: newsrunnerTelop12, size: 103, x: 600, y: 1060 },
+      { src: newsrunnerTelop13, size: 90, x: 730, y: 1070 },
+    ],
+  },
   { src: umimachiLogo, size: 375, x: 360, y: 1810 },
   { src: umimachiTelop01, size: 310, x: 575, y: 2180 },
-  { src: umimachiTelop03, size: 167, x: 330, y: 2225 },
-  { src: umimachiTelop02, size: 170, x: 330, y: 2335 },
+  {
+    group: [
+      { src: umimachiTelop03, size: 167, x: 330, y: 2225 },
+      { src: umimachiTelop02, size: 170, x: 330, y: 2335 },
+    ],
+  },
   { src: hongkongMap, size: 265, x: 835, y: 1840 },
-  { src: hongkongTelop01, size: 173, x: 1130, y: 1880 },
-  { src: hongkongTelop02, size: 248, x: 1130, y: 1995 },
+  {
+    group: [
+      { src: hongkongTelop01, size: 173, x: 1130, y: 1880 },
+      { src: hongkongTelop02, size: 248, x: 1130, y: 1995 },
+    ],
+  },
   { src: wakayamaDeKanpaiLogo01, size: 445, x: 910, y: 2195 },
-]
-
-const taiwanIconPair = [
-  { src: taiwanIcon01, size: 124, x: 1245, y: 420 },
-  { src: taiwanIcon02, size: 124, x: 1215, y: 280 },
 ]
 
 const details = [
@@ -159,18 +172,20 @@ function DesignPieces() {
           view detail
         </span>
 
-        {images.slice(0, 2).map((img, i) => (
-          <img
-            key={i}
-            className="design-piece"
-            src={img.src}
-            alt=""
-            style={{ left: pxToVw(img.x), top: pxToVw(img.y), width: pxToVw(img.size) }}
-          />
-        ))}
-
-        <div className="design-piece-pair">
-          {taiwanIconPair.map((img, i) => (
+        {images.map((img, i) =>
+          img.group ? (
+            <div key={i} className="design-piece-pair">
+              {img.group.map((g, gi) => (
+                <img
+                  key={gi}
+                  className="design-piece"
+                  src={g.src}
+                  alt=""
+                  style={{ left: pxToVw(g.x), top: pxToVw(g.y), width: pxToVw(g.size) }}
+                />
+              ))}
+            </div>
+          ) : (
             <img
               key={i}
               className="design-piece"
@@ -178,18 +193,8 @@ function DesignPieces() {
               alt=""
               style={{ left: pxToVw(img.x), top: pxToVw(img.y), width: pxToVw(img.size) }}
             />
-          ))}
-        </div>
-
-        {images.slice(2).map((img, i) => (
-          <img
-            key={i + 2}
-            className="design-piece"
-            src={img.src}
-            alt=""
-            style={{ left: pxToVw(img.x), top: pxToVw(img.y), width: pxToVw(img.size) }}
-          />
-        ))}
+          ),
+        )}
 
         {details.map((d, i) => (
           <button

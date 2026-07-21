@@ -712,6 +712,12 @@ button {
     max-width: none;
     min-width: 60px;
   }
+
+  .footer-col-right .footer-contact-img,
+  .footer-col-right .footer-instagram-btn {
+    width: 62px !important;
+    max-width: 62px;
+  }
 }
 
 /* Left Nav */

@@ -604,7 +604,8 @@ button {
 }
 
 .footer-works-grid,
-.footer-nav-row {
+.footer-nav-row,
+.footer-contact-row {
   display: contents;
 }
 
@@ -711,6 +712,19 @@ button {
     width: auto !important;
     max-width: none;
     min-width: 60px;
+  }
+
+  .footer-nav-btn {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+  }
+
+  .footer-contact-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 8px;
   }
 
   .footer-col-right .footer-contact-img,

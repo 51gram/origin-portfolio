@@ -71,22 +71,24 @@ function Footer() {
               </a>
             ))}
           </div>
-          <img
-            src={footerContact}
-            alt=""
-            className="footer-contact-img"
-            style={{ left: pxToVw(686), top: pxToVw(219), width: pxToVw(116.84) }}
-          />
-          <a
-            href="https://www.instagram.com/coichitti/"
-            target="_blank"
-            rel="noreferrer"
-            className="footer-nav-btn footer-instagram-btn"
-            style={{ left: pxToVw(821), top: pxToVw(219), width: pxToVw(105.17) }}
-          >
-            <img src={footerInstagramN} className="n" alt="" />
-            <img src={footerInstagramF} className="f" alt="" />
-          </a>
+          <div className="footer-contact-row">
+            <img
+              src={footerContact}
+              alt=""
+              className="footer-contact-img"
+              style={{ left: pxToVw(686), top: pxToVw(219), width: pxToVw(116.84) }}
+            />
+            <a
+              href="https://www.instagram.com/coichitti/"
+              target="_blank"
+              rel="noreferrer"
+              className="footer-nav-btn footer-instagram-btn"
+              style={{ left: pxToVw(821), top: pxToVw(219), width: pxToVw(105.17) }}
+            >
+              <img src={footerInstagramN} className="n" alt="" />
+              <img src={footerInstagramF} className="f" alt="" />
+            </a>
+          </div>
         </div>
       </div>
     </footer>

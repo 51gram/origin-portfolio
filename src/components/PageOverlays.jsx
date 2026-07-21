@@ -3,12 +3,12 @@ import scrollDown from '../assets/icons/ScrollDown.svg'
 import bgArrow from '../assets/icons/BgArrow01.svg'
 import logoMarkIcon from '../assets/icons/LogoMarkIcon01.svg'
 
-const scrollDownIcon = { src: scrollDown, x: 725, y: 780, width: 89 }
+const scrollDownIcon = { src: scrollDown, x: 725, y: 810, width: 89 }
 
 const bgArrows = [
   { x: 760, y: 730 },
-  { x: 715, y: 3350 },
-  { x: 715, y: 5425 },
+  { x: 715, y: 3280 },
+  { x: 715, y: 5175 },
 ]
 
 const logoMarks = [

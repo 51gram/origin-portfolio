@@ -1,11 +1,10 @@
 import { useEffect, useRef } from 'react'
 import { gsap, ScrollTrigger, whenLayoutReady } from '../lib/gsap'
 
-const HERO_COLOR = '#000000'
+const HERO_COLOR = '#faf7f0'
 
 const zones = [
-  { selector: '#design-pieces', from: '#faf7f0', to: '#949085', start: 'top 80%', end: 'top top' },
-  { selector: '#motion-edit', from: '#949085', to: '#141414', start: 'top 80%', end: 'top 15%' },
+  { selector: '#motion-edit', from: '#faf7f0', to: '#141414', start: 'top 80%', end: 'top 15%' },
   { selector: '#infographics', from: '#141414', to: '#ffffff', start: 'top 90%', end: 'top 25%' },
 ]
 

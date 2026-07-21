@@ -96,8 +96,8 @@ const images = [
   { src: hongkongMap, size: 265, x: 835, y: 1840 },
   {
     group: [
-      { src: hongkongTelop01, size: 173, x: 1130, y: 1880 },
-      { src: hongkongTelop02, size: 248, x: 1130, y: 1995 },
+      { src: hongkongTelop01, size: 174, x: 1130, y: 1880 },
+      { src: hongkongTelop02, size: 247, x: 1130, y: 1995 },
     ],
   },
   { src: wakayamaDeKanpaiLogo01, size: 445, x: 910, y: 2195 },

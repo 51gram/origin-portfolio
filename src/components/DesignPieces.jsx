@@ -51,13 +51,6 @@ const images = [
   { src: annaDaisenLogo, size: 500, x: 835, y: 640 },
   { src: annaGifuLogo, size: 640, x: 60, y: 705 },
   { src: newsRunspoLogo01, size: 600, x: 760, y: 920 },
-  { src: newsRunspoTelop01, size: 220, x: 50, y: 1125 },
-  { src: newsrunnerTelop04, size: 220, x: 50, y: 1255 },
-  { src: newsWagamichiTelop02, size: 220, x: 50, y: 1370 },
-  { src: newsrunnerTelop11, size: 220, x: 50, y: 1475 },
-  { src: newsrunnerTelop09, size: 281, x: 300, y: 1155 },
-  { src: newsrunnerTelop07, size: 246, x: 300, y: 1265 },
-  { src: newsWagamichiTelop04, size: 267, x: 300, y: 1350 },
   { src: newsrunnerTelop10, size: 520, x: 855, y: 1140 },
   { src: newsrunnerTelop01, size: 520, x: 855, y: 1280 },
   { src: newsrunnerTelop08, size: 520, x: 855, y: 1400 },
@@ -66,6 +59,25 @@ const images = [
   { src: newsRunspoTelop02, size: 520, x: 290, y: 1480 },
   { src: newsWagamichiTelop01, size: 520, x: 290, y: 1580 },
   { src: hanaippaiTanabeTelop01, size: 520, x: 290, y: 1660 },
+  {
+    group: [
+      { src: newsRunspoTelop01, size: 220, x: 50, y: 1125 },
+      { src: newsrunnerTelop04, size: 220, x: 50, y: 1255 },
+    ],
+  },
+  {
+    group: [
+      { src: newsWagamichiTelop02, size: 220, x: 50, y: 1370 },
+      { src: newsrunnerTelop11, size: 220, x: 50, y: 1475 },
+    ],
+  },
+  {
+    group: [
+      { src: newsrunnerTelop09, size: 281, x: 300, y: 1155 },
+      { src: newsrunnerTelop07, size: 246, x: 300, y: 1265 },
+    ],
+  },
+  { src: newsWagamichiTelop04, size: 267, x: 300, y: 1350, mobileHalf: true },
   {
     group: [
       { src: kiyoLogo, size: 170, x: 75, y: 1620 },
@@ -188,7 +200,7 @@ function DesignPieces() {
           ) : (
             <img
               key={i}
-              className="design-piece"
+              className={img.mobileHalf ? 'design-piece design-piece-half' : 'design-piece'}
               src={img.src}
               alt=""
               style={{ left: pxToVw(img.x), top: pxToVw(img.y), width: pxToVw(img.size) }}

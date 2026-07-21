@@ -45,28 +45,32 @@ function Footer() {
             alt="51gram"
             style={{ left: pxToVw(50), top: pxToVw(35), width: pxToVw(260) }}
           />
-          {works.map((w, i) => (
-            <img
-              key={i}
-              src={w.src}
-              alt=""
-              className="footer-works-img"
-              style={{ left: pxToVw(w.x), top: pxToVw(w.y), width: pxToVw(w.width) }}
-            />
-          ))}
+          <div className="footer-works-grid">
+            {works.map((w, i) => (
+              <img
+                key={i}
+                src={w.src}
+                alt=""
+                className="footer-works-img"
+                style={{ left: pxToVw(w.x), top: pxToVw(w.y), width: pxToVw(w.width) }}
+              />
+            ))}
+          </div>
         </div>
         <div className="footer-col footer-col-right">
-          {navButtons.map((btn, i) => (
-            <a
-              key={i}
-              href={btn.href}
-              className="footer-nav-btn"
-              style={{ left: pxToVw(btn.x), top: pxToVw(btn.y), width: pxToVw(btn.width) }}
-            >
-              <img src={btn.n} className="n" alt="" />
-              <img src={btn.f} className="f" alt="" />
-            </a>
-          ))}
+          <div className="footer-nav-row">
+            {navButtons.map((btn, i) => (
+              <a
+                key={i}
+                href={btn.href}
+                className="footer-nav-btn"
+                style={{ left: pxToVw(btn.x), top: pxToVw(btn.y), width: pxToVw(btn.width) }}
+              >
+                <img src={btn.n} className="n" alt="" />
+                <img src={btn.f} className="f" alt="" />
+              </a>
+            ))}
+          </div>
           <img
             src={footerContact}
             alt=""

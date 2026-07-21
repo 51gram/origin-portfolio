@@ -603,6 +603,11 @@ button {
   border-radius: 0 30px 30px 0;
 }
 
+.footer-works-grid,
+.footer-nav-row {
+  display: contents;
+}
+
 .footer-logo-img,
 .footer-works-img,
 .footer-contact-img {
@@ -676,6 +681,36 @@ button {
     position: static !important;
     width: auto !important;
     max-width: 200px;
+  }
+
+  .footer-works-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start;
+    gap: 12px 16px;
+    width: 100%;
+  }
+
+  .footer-works-grid .footer-works-img {
+    width: 100% !important;
+    max-width: none;
+    height: auto;
+  }
+
+  .footer-nav-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .footer-nav-row .footer-nav-btn {
+    flex: 1 1 0;
+    width: auto !important;
+    max-width: none;
+    min-width: 60px;
   }
 }
 

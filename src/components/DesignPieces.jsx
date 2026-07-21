@@ -159,7 +159,7 @@ function DesignPieces() {
           view detail
         </span>
 
-        {images.map((img, i) => (
+        {images.slice(0, 2).map((img, i) => (
           <img
             key={i}
             className="design-piece"
@@ -180,6 +180,16 @@ function DesignPieces() {
             />
           ))}
         </div>
+
+        {images.slice(2).map((img, i) => (
+          <img
+            key={i + 2}
+            className="design-piece"
+            src={img.src}
+            alt=""
+            style={{ left: pxToVw(img.x), top: pxToVw(img.y), width: pxToVw(img.size) }}
+          />
+        ))}
 
         {details.map((d, i) => (
           <button

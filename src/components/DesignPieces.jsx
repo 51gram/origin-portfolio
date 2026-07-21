@@ -41,8 +41,6 @@ import wakayamaDeKanpaiLogo01 from '../assets/images/works/WakayamaDeKanpai_logo
 const images = [
   { src: newsTsuisekiLogo01, size: 455, x: 158, y: 343 },
   { src: taiwanLogo, size: 414, x: 760, y: 235 },
-  { src: taiwanIcon01, size: 124, x: 1245, y: 420 },
-  { src: taiwanIcon02, size: 124, x: 1215, y: 280 },
   { src: newsWagamichiLogo, size: 452, x: 290, y: 590 },
   { src: annaDaisenLogo, size: 500, x: 835, y: 640 },
   { src: annaGifuLogo, size: 640, x: 60, y: 705 },
@@ -73,6 +71,11 @@ const images = [
   { src: hongkongTelop01, size: 173, x: 1130, y: 1880 },
   { src: hongkongTelop02, size: 248, x: 1130, y: 1995 },
   { src: wakayamaDeKanpaiLogo01, size: 445, x: 910, y: 2195 },
+]
+
+const taiwanIconPair = [
+  { src: taiwanIcon01, size: 124, x: 1245, y: 420 },
+  { src: taiwanIcon02, size: 124, x: 1215, y: 280 },
 ]
 
 const details = [
@@ -165,6 +168,18 @@ function DesignPieces() {
             style={{ left: pxToVw(img.x), top: pxToVw(img.y), width: pxToVw(img.size) }}
           />
         ))}
+
+        <div className="design-piece-pair">
+          {taiwanIconPair.map((img, i) => (
+            <img
+              key={i}
+              className="design-piece"
+              src={img.src}
+              alt=""
+              style={{ left: pxToVw(img.x), top: pxToVw(img.y), width: pxToVw(img.size) }}
+            />
+          ))}
+        </div>
 
         {details.map((d, i) => (
           <button

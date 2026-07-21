@@ -152,6 +152,10 @@ button {
   height: auto;
 }
 
+.design-piece-pair {
+  display: contents;
+}
+
 .detail-btn {
   position: absolute;
   aspect-ratio: 1;
@@ -245,6 +249,17 @@ button {
   .design-piece {
     position: static;
     width: 70% !important;
+  }
+
+  .design-piece-pair {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    width: 70%;
+  }
+
+  .design-piece-pair .design-piece {
+    width: 50% !important;
   }
 }
 

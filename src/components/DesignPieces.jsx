@@ -99,6 +99,7 @@ const images = [
       { src: hongkongTelop01, size: 174, x: 1130, y: 1880 },
       { src: hongkongTelop02, size: 247, x: 1130, y: 1995 },
     ],
+    mobileEqualHeight: true,
   },
   { src: wakayamaDeKanpaiLogo01, size: 445, x: 910, y: 2195 },
 ]
@@ -186,7 +187,12 @@ function DesignPieces() {
 
         {images.map((img, i) =>
           img.group ? (
-            <div key={i} className="design-piece-pair">
+            <div
+              key={i}
+              className={
+                img.mobileEqualHeight ? 'design-piece-pair design-piece-pair-equal-height' : 'design-piece-pair'
+              }
+            >
               {img.group.map((g, gi) => (
                 <img
                   key={gi}

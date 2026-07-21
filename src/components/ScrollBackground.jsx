@@ -4,7 +4,15 @@ import { gsap, ScrollTrigger, whenLayoutReady } from '../lib/gsap'
 const HERO_COLOR = '#faf7f0'
 
 const zones = [
-  { selector: '#motion-edit', from: '#faf7f0', to: '#141414', start: 'top 80%', end: 'top 15%' },
+  {
+    selector: '#design-pieces',
+    endSelector: '#motion-edit',
+    from: '#faf7f0',
+    to: '#949085',
+    start: 'top top',
+    end: 'top 80%',
+  },
+  { selector: '#motion-edit', from: '#949085', to: '#141414', start: 'top 80%', end: 'top 15%' },
   { selector: '#infographics', from: '#141414', to: '#ffffff', start: 'top 90%', end: 'top 25%' },
 ]
 
@@ -19,7 +27,8 @@ function ScrollBackground() {
           .map((zone) => {
             const el = document.querySelector(zone.selector)
             if (!el) return null
-            return { ...zone, el, interpolate: gsap.utils.interpolate(zone.from, zone.to) }
+            const endEl = zone.endSelector ? document.querySelector(zone.endSelector) : null
+            return { ...zone, el, endEl, interpolate: gsap.utils.interpolate(zone.from, zone.to) }
           })
           .filter(Boolean)
 
@@ -45,6 +54,7 @@ function ScrollBackground() {
             ScrollTrigger.create({
               trigger: zone.el,
               start: zone.start,
+              endTrigger: zone.endEl || zone.el,
               end: zone.end,
               onUpdate: recompute,
               onEnter: recompute,

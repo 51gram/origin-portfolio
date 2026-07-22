@@ -34,19 +34,21 @@ function Header() {
   }, [])
 
   return (
-    <header className="site-header" ref={headerRef}>
-      <a href="#top">
-        <img src={logoUrl} alt="51gram" className="site-logo" />
-      </a>
-      <button
-        type="button"
-        className="header-qr-btn"
-        style={{ left: '85%' }}
-        onClick={() => setQrOpen(true)}
-        aria-label="QRコードを表示"
-      >
-        <img src={qrBtn} alt="" />
-      </button>
+    <>
+      <header className="site-header" ref={headerRef}>
+        <a href="#top">
+          <img src={logoUrl} alt="51gram" className="site-logo" />
+        </a>
+        <button
+          type="button"
+          className="header-qr-btn"
+          style={{ left: '85%' }}
+          onClick={() => setQrOpen(true)}
+          aria-label="QRコードを表示"
+        >
+          <img src={qrBtn} alt="" />
+        </button>
+      </header>
 
       {qrOpen && (
         <div className="qr-modal-overlay" onClick={() => setQrOpen(false)}>
@@ -67,7 +69,7 @@ function Header() {
           </div>
         </div>
       )}
-    </header>
+    </>
   )
 }
 

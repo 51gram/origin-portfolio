@@ -19,9 +19,25 @@ const buttons = [
   { n: btn04n, f: btn04f, x: 0, y: 204, href: '#infographics', circleX: 1, circleY: 205 },
 ]
 
+const SCROLL_END_DELAY = 150
+
 function LeftNav() {
   const navRef = useRef(null)
   const [activeIndex, setActiveIndex] = useState(0)
+  const isAutoScrolling = useRef(false)
+  const pendingIndex = useRef(null)
+  const scrollEndTimer = useRef(null)
+
+  function scheduleScrollEnd() {
+    clearTimeout(scrollEndTimer.current)
+    scrollEndTimer.current = setTimeout(() => {
+      isAutoScrolling.current = false
+      if (pendingIndex.current !== null) {
+        setActiveIndex(pendingIndex.current)
+        pendingIndex.current = null
+      }
+    }, SCROLL_END_DELAY)
+  }
 
   useEffect(() => {
     let ctx
@@ -50,9 +66,15 @@ function LeftNav() {
             trigger: selector,
             start: 'top top',
             end: 'bottom top',
-            onEnter: () => setActiveIndex(index),
-            onEnterBack: () => setActiveIndex(index),
-            onLeaveBack: () => setActiveIndex(index - 1),
+            onEnter: () => {
+              if (!isAutoScrolling.current) setActiveIndex(index)
+            },
+            onEnterBack: () => {
+              if (!isAutoScrolling.current) setActiveIndex(index)
+            },
+            onLeaveBack: () => {
+              if (!isAutoScrolling.current) setActiveIndex(index - 1)
+            },
           })
         })
       })
@@ -62,6 +84,23 @@ function LeftNav() {
       ctx && ctx.revert()
     }
   }, [])
+
+  useEffect(() => {
+    function handleScroll() {
+      if (isAutoScrolling.current) scheduleScrollEnd()
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      clearTimeout(scrollEndTimer.current)
+    }
+  }, [])
+
+  function handleNavClick(i) {
+    isAutoScrolling.current = true
+    pendingIndex.current = i
+    scheduleScrollEnd()
+  }
 
   const active = buttons[activeIndex]
 
@@ -80,7 +119,7 @@ function LeftNav() {
           href={btn.href}
           className="left-nav-btn"
           style={{ left: pxToVw(btn.x), top: pxToVw(btn.y), width: pxToVw(46) }}
-          onClick={() => setActiveIndex(i)}
+          onClick={() => handleNavClick(i)}
           aria-label={btn.href.replace('#', '')}
         >
           <img src={btn.n} className="n" alt="" />

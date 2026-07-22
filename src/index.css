@@ -208,7 +208,8 @@ button {
 
 @media (max-width: 768px) {
   .detail-btn,
-  .detail-pop {
+  .detail-pop,
+  .view-detail {
     display: none;
   }
 }
@@ -225,8 +226,7 @@ button {
 
   .design-pieces-heading,
   .design-pieces-sub,
-  .design-pieces-line,
-  .view-detail {
+  .design-pieces-line {
     position: static;
     font-size: revert !important;
     white-space: normal;

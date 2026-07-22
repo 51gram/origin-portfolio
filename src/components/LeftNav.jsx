@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { gsap, whenLayoutReady } from '../lib/gsap'
+import { gsap, ScrollTrigger, whenLayoutReady } from '../lib/gsap'
 import { pxToVw } from '../lib/layout'
 import leftNaviBase from '../assets/icons/leftNaviBase.svg'
 import leftNaviCircle from '../assets/icons/leftNaviCircle.svg'
@@ -37,6 +37,23 @@ function LeftNav() {
             start: 'top 80%',
             toggleActions: 'play none none reverse',
           },
+        })
+
+        const sections = [
+          { selector: '#design-pieces', index: 1 },
+          { selector: '#motion-edit', index: 2 },
+          { selector: '#infographics', index: 3 },
+        ]
+
+        sections.forEach(({ selector, index }) => {
+          ScrollTrigger.create({
+            trigger: selector,
+            start: 'top top',
+            end: 'bottom top',
+            onEnter: () => setActiveIndex(index),
+            onEnterBack: () => setActiveIndex(index),
+            onLeaveBack: () => setActiveIndex(index - 1),
+          })
         })
       })
     })

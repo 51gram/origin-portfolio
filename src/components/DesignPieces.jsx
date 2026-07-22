@@ -215,27 +215,24 @@ function DesignPieces() {
         )}
 
         {details.map((d, i) => (
-          <button
+          <div
             key={i}
-            type="button"
-            className="detail-btn"
-            style={{ left: pxToVw(d.btnX), top: pxToVw(d.btnY), width: pxToVw(17) }}
-            onClick={() => setOpenIndex((prev) => (prev === i ? null : i))}
-            aria-label="詳細を見る"
+            className="detail-group"
+            onMouseEnter={() => setOpenIndex(i)}
+            onMouseLeave={() => setOpenIndex((prev) => (prev === i ? null : prev))}
           >
-            <img src={detailBtnN} className="detail-btn-n" alt="" />
-            <img src={detailBtnF} className="detail-btn-f" alt="" />
-          </button>
-        ))}
+            <button
+              type="button"
+              className="detail-btn"
+              style={{ left: pxToVw(d.btnX), top: pxToVw(d.btnY), width: pxToVw(17) }}
+              aria-label="詳細を見る"
+            >
+              <img src={detailBtnN} className="detail-btn-n" alt="" />
+              <img src={detailBtnF} className="detail-btn-f" alt="" />
+            </button>
 
-        {details.map(
-          (d, i) =>
-            openIndex === i && (
-              <div
-                key={i}
-                className="detail-pop"
-                style={{ left: pxToVw(d.popX), top: pxToVw(d.popY) }}
-              >
+            {openIndex === i && (
+              <div className="detail-pop" style={{ left: pxToVw(d.popX), top: pxToVw(d.popY) }}>
                 {d.lines.map((line, li) => (
                   <p
                     key={li}
@@ -246,8 +243,9 @@ function DesignPieces() {
                   </p>
                 ))}
               </div>
-            ),
-        )}
+            )}
+          </div>
+        ))}
       </div>
     </section>
   )

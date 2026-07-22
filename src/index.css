@@ -258,6 +258,10 @@ button {
   display: contents;
 }
 
+.detail-group {
+  display: contents;
+}
+
 .detail-btn {
   position: absolute;
   aspect-ratio: 1;

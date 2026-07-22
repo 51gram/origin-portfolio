@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { gsap, whenLayoutReady } from '../lib/gsap'
 import { pxToVw } from '../lib/layout'
 import logoUrl from '../assets/icons/51gram_logo.svg'
 import qrBtn from '../assets/icons/QrBtn.svg'
@@ -7,10 +8,33 @@ import btnCloseN from '../assets/icons/BtnClosen.svg'
 import btnCloseF from '../assets/icons/BtnClosef.svg'
 
 function Header() {
+  const headerRef = useRef(null)
   const [qrOpen, setQrOpen] = useState(false)
 
+  useEffect(() => {
+    let ctx
+    const cancel = whenLayoutReady(() => {
+      ctx = gsap.context(() => {
+        gsap.to(headerRef.current, {
+          y: '-100%',
+          duration: 0.4,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '#design-pieces',
+            start: 'top top',
+            toggleActions: 'play none none reverse',
+          },
+        })
+      })
+    })
+    return () => {
+      cancel()
+      ctx && ctx.revert()
+    }
+  }, [])
+
   return (
-    <header className="site-header">
+    <header className="site-header" ref={headerRef}>
       <a href="#top">
         <img src={logoUrl} alt="51gram" className="site-logo" />
       </a>

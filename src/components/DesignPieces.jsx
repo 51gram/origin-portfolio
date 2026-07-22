@@ -150,7 +150,7 @@ function DesignPieces() {
 
     return () => {
       cancel()
-      ctx && ctx.revert()
+      if (ctx) ctx.revert()
     }
   }, [])
 

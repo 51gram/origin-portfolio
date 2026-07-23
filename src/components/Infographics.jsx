@@ -80,7 +80,7 @@ function Infographics() {
           className="infographics-bg-pattern"
           aria-hidden="true"
           style={{
-            left: pxToVw(34),
+            left: pxToVw(45),
             top: pxToVw(270),
             width: pxToVw(1350),
             height: pxToVw(1150),

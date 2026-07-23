@@ -1,5 +1,5 @@
 :root {
-  --bg: #000000;
+  --bg: #faf7f0;
   --text: #f2f1ea;
 
   --sans: 'Zen Kaku Gothic New', system-ui, 'Segoe UI', Roboto, sans-serif;
@@ -22,13 +22,6 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-}
-
-.scroll-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background-color: var(--bg);
 }
 
 a {
@@ -172,6 +165,7 @@ button {
 .hero {
   position: relative;
   z-index: 1;
+  background: #faf7f0;
 }
 
 .hero-video-frame {
@@ -200,6 +194,7 @@ button {
 .design-pieces-layers {
   position: relative;
   width: 100%;
+  background: linear-gradient(to bottom, #faf7f0, #949085);
 }
 
 .design-pieces-heading {
@@ -379,6 +374,7 @@ button {
 .motion-edit-grid {
   position: relative;
   width: 100%;
+  background: linear-gradient(to bottom, #424242, #000000);
 }
 
 .motion-edit-heading {
@@ -577,6 +573,7 @@ button {
 .infographics-grid {
   position: relative;
   width: 100%;
+  background: #ffffff;
 }
 
 .infographics-bg-pattern {

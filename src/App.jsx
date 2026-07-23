@@ -1,5 +1,4 @@
 import Header from './components/Header'
-import ScrollBackground from './components/ScrollBackground'
 import Hero from './components/Hero'
 import DesignPieces from './components/DesignPieces'
 import MotionEdit from './components/MotionEdit'
@@ -11,7 +10,6 @@ import PageOverlays from './components/PageOverlays'
 function App() {
   return (
     <>
-      <ScrollBackground />
       <Header />
       <LeftNav />
       <PageOverlays />

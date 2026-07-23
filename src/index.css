@@ -910,11 +910,3 @@ button {
   }
 }
 
-@media (max-width: 640px) {
-  .design-pieces,
-  .motion-edit,
-  .infographics {
-    padding-left: 5vw;
-    padding-right: 5vw;
-  }
-}

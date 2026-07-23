@@ -1,73 +1,61 @@
 import { useEffect, useRef } from 'react'
-import { gsap, ScrollTrigger, whenLayoutReady } from '../lib/gsap'
+import { gsap, whenLayoutReady } from '../lib/gsap'
 
 const HERO_COLOR = '#faf7f0'
 
-// Each zone spans exactly its own section (top top -> bottom top), so the
-// transition always covers the section's full scroll distance regardless
-// of how tall that section renders on a given breakpoint (the desktop
-// absolute-canvas layout and the mobile stacked-flow layout have very
-// different heights for the same content).
+// Each zone spans exactly its own section (top -> bottom of that element in
+// document coordinates), so the transition always covers the section's
+// full scroll distance regardless of how tall that section renders on a
+// given breakpoint (the desktop absolute-canvas layout and the mobile
+// stacked-flow layout have very different heights for the same content).
 const zones = [
-  { selector: '#design-pieces', from: '#faf7f0', to: '#949085', start: 'top top', end: 'bottom top' },
-  { selector: '#motion-edit', from: '#949085', to: '#141414', start: 'top top', end: 'bottom top' },
-  { selector: '#infographics', from: '#141414', to: '#ffffff', start: 'top top', end: 'bottom top' },
+  { selector: '#design-pieces', from: '#faf7f0', to: '#949085' },
+  { selector: '#motion-edit', from: '#949085', to: '#141414' },
+  { selector: '#infographics', from: '#141414', to: '#ffffff' },
 ]
 
 function ScrollBackground() {
   const bgRef = useRef(null)
 
   useEffect(() => {
-    let ctx
+    let recompute = null
+
     const cancel = whenLayoutReady(() => {
-      ctx = gsap.context(() => {
-        const resolved = zones
-          .map((zone) => {
-            const el = document.querySelector(zone.selector)
-            if (!el) return null
-            return { ...zone, el, interpolate: gsap.utils.interpolate(zone.from, zone.to) }
-          })
-          .filter(Boolean)
+      const resolved = zones
+        .map((zone) => {
+          const el = document.querySelector(zone.selector)
+          if (!el) return null
+          return { ...zone, el, interpolate: gsap.utils.interpolate(zone.from, zone.to) }
+        })
+        .filter(Boolean)
 
-        const triggers = []
-
-        function recompute() {
-          let color = HERO_COLOR
-
-          resolved.forEach((zone, i) => {
-            const trigger = triggers[i]
-            if (!trigger) return
-            const progress = trigger.progress
-            if (progress > 0) {
-              color = zone.interpolate(progress)
-            }
-          })
-
-          gsap.set(bgRef.current, { backgroundColor: color })
-        }
+      recompute = () => {
+        const scrollY = window.scrollY
+        let color = HERO_COLOR
 
         resolved.forEach((zone) => {
-          triggers.push(
-            ScrollTrigger.create({
-              trigger: zone.el,
-              start: zone.start,
-              end: zone.end,
-              onUpdate: recompute,
-              onEnter: recompute,
-              onLeave: recompute,
-              onEnterBack: recompute,
-              onLeaveBack: recompute,
-            }),
-          )
+          const rect = zone.el.getBoundingClientRect()
+          const top = scrollY + rect.top
+          const bottom = top + rect.height
+          if (scrollY <= top) return
+          const progress = Math.min(1, (scrollY - top) / (bottom - top))
+          color = zone.interpolate(progress)
         })
 
-        recompute()
-      })
+        bgRef.current.style.backgroundColor = color
+      }
+
+      recompute()
+      window.addEventListener('scroll', recompute, { passive: true })
+      window.addEventListener('resize', recompute)
     })
 
     return () => {
       cancel()
-      if (ctx) ctx.revert()
+      if (recompute) {
+        window.removeEventListener('scroll', recompute)
+        window.removeEventListener('resize', recompute)
+      }
     }
   }, [])
 

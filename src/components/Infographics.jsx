@@ -84,7 +84,7 @@ function Infographics() {
             top: pxToVw(270),
             width: pxToVw(1350),
             height: pxToVw(1150),
-            backgroundImage: `url(${infoBgPattern})`,
+            backgroundImage: `url("${infoBgPattern}")`,
             backgroundSize: `${pxToVw(50)} ${pxToVw(50)}`,
           }}
         />

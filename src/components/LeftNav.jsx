@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap, ScrollTrigger, whenLayoutReady } from '../lib/gsap'
-import { pxToVw } from '../lib/layout'
 import leftNaviBase from '../assets/icons/leftNaviBase.svg'
 import leftNaviCircle from '../assets/icons/leftNaviCircle.svg'
 import btn01n from '../assets/icons/leftNaviBtn01n.svg'
@@ -13,10 +12,10 @@ import btn04n from '../assets/icons/leftNaviBtn04n.svg'
 import btn04f from '../assets/icons/leftNaviBtn04f.svg'
 
 const buttons = [
-  { n: btn01n, f: btn01f, x: 0, y: 0, href: '#top', circleX: 1, circleY: 1 },
-  { n: btn02n, f: btn02f, x: 0, y: 68, href: '#design-pieces', circleX: 1, circleY: 69 },
-  { n: btn03n, f: btn03f, x: 0, y: 137, href: '#motion-edit', circleX: 1, circleY: 137 },
-  { n: btn04n, f: btn04f, x: 0, y: 204, href: '#infographics', circleX: 1, circleY: 205 },
+  { n: btn01n, f: btn01f, x: 0, y: 0, href: '#top', circleX: 2, circleY: 2 },
+  { n: btn02n, f: btn02f, x: 0, y: 108, href: '#design-pieces', circleX: 2, circleY: 110 },
+  { n: btn03n, f: btn03f, x: 0, y: 217, href: '#motion-edit', circleX: 2, circleY: 219 },
+  { n: btn04n, f: btn04f, x: 0, y: 326, href: '#infographics', circleX: 2, circleY: 328 },
 ]
 
 const SCROLL_END_DELAY = 150
@@ -105,11 +104,11 @@ function LeftNav() {
   const active = buttons[activeIndex]
 
   return (
-    <nav className="left-nav" ref={navRef} style={{ left: pxToVw(6) }}>
-      <img src={leftNaviBase} className="left-nav-base" alt="" style={{ width: pxToVw(46) }} />
+    <nav className="left-nav" ref={navRef} style={{ left: '6px' }}>
+      <img src={leftNaviBase} className="left-nav-base" alt="" style={{ width: '74px' }} />
       <span
         className="left-nav-circle"
-        style={{ left: pxToVw(active.circleX), top: pxToVw(active.circleY), width: pxToVw(44) }}
+        style={{ left: `${active.circleX}px`, top: `${active.circleY}px`, width: '70px' }}
       >
         <img src={leftNaviCircle} alt="" />
       </span>
@@ -118,7 +117,7 @@ function LeftNav() {
           key={i}
           href={btn.href}
           className="left-nav-btn"
-          style={{ left: pxToVw(btn.x), top: pxToVw(btn.y), width: pxToVw(46) }}
+          style={{ left: `${btn.x}px`, top: `${btn.y}px`, width: '74px' }}
           onClick={() => handleNavClick(i)}
           aria-label={btn.href.replace('#', '')}
         >
